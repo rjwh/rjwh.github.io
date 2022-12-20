@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+	<title>:)</title>
+	<script type="text/javascript" src="aes.js"></script>
+	<script type="text/javascript" src="marked.min.js"></script>
+	
+	<script>
+		window.onload = function() { dec(); };
+	</script>
+</head>
+<body>
+	<div align="center">
+		<input type="text" value="password" id="pwd" />
+		<div id="list"></div>
+	</div>
+	<script type="text/javascript">
+		
+		document.getElementById("pwd").addEventListener("keyup", dec);
+		
+		function dec()
+		{
+			var pwd = document.getElementById('pwd').value;
+			var li = "";
+			var text = "";
+			
+			try
+			{
+				var cip = CryptoJS.AES.decrypt(li, pwd);
+				var text = cip.toString(CryptoJS.enc.Utf8);
+			}
+			catch
+			{
+				return;
+			}
+
+			document.getElementById('list').innerHTML = "<pre>" + marked.parse(text) + "</pre>";
+		}
+		</script>
+</body>
+</html>
+
